@@ -1,0 +1,104 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+section {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    box-sizing: content-box;
+}
+
+.page {
+    flex: 4;
+    display: flex;
+    justify-content: center;
+    padding: 5%;
+    background-color: var(--color1);
+}
+
+.form {
+    width: 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+}
+
+.form h1 {
+    margin-bottom: 30px;
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    padding-bottom: 15px;
+}
+
+.form .input-box {
+    position: relative;
+}
+
+.form .input-box input, .form .input-box select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid white;
+    background: transparent;
+    outline: none;
+}
+
+.form .input-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    letter-spacing: 1px;
+    font-size: 16px;
+    color: var(--color1);
+    transition: 0.5s;
+}
+
+.form .form__input-error {
+    font-size: 12px;
+    margin-bottom: 0;
+    color: #c53b3e;
+    display: none;  
+}
+
+.form .form__input-error-activo {
+    display: inline;
+}
+
+.forgetPass {
+    padding-bottom: 20px;
+}
+
+.forgetPass a {
+    color: var(--color1);
+    font-size: small;
+}
+
+.btn {
+    background: var(--color2);
+    border-radius: 17px;
+    font-family: Arial;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: 0px;
+}
+
+.btn:hover {
+    background: var(--color4);
+    text-decoration: none;
+    color: var(--color2);
+}
+
