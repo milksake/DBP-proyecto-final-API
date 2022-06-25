@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+Menu
+</title>
+    <link rel="stylesheet" href='/static/global.css'>
+	
+<link rel="stylesheet" href='/static/style.css'>
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="btn-header" onclick="toggleMenu()">
+                &#9776
+            </div>
+            <img class="btn-heades" src="../static/imagenes/1.png" width="180px" height="150px" alt="MDN">
+        </nav>
+        <nav>
+            <a href="/">Menu</a>
+            
+                <a href="/register">Register</a>
+                <a href="/login">Login</a>
+                        
+            <div class="searchbar">
+                <input type="text" id="busqueda" name="busqueda">
+                <!--No se asusten si les sale error en la linea de abajo-->
+                <button type="submit" onclick="search('/search/')">Search</button>
+            </div>
+            <a class="btn-header" href="/cart">&#x1f6d2;</a>
+            
+        </nav>
+    </header>
+	
+<section>
+        <ul id="toggle-menu">
+            <a href="/tag/2x2"><li>2x2</li></a>
+            <a href="/tag/3x3"><li>3x3</li></a>
+            <a href="/tag/4x4"><li>4x4</li></a>
+            <a href="/tag/5x5%20+"><li>5x5 +</li></a>
+            <a href="/tag/Pyramix"><li>Pyramix</li></a>
+            <a href="/tag/Gear%20cubes"><li>Gear cubes</li></a>
+            <a href="/tag/Mirror%20cubes"><li>Mirror cubes</li></a>
+        </ul>
+        
+        <div class="container" id="product-container">
+           <!--products-->
+            
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <img class="btn-heades" src="../static/imagenes/4.jpeg" width="140px" height="40px" alt="MDN">
+        </div>
+        <nav>
+            <a href="/add-product">Add product</a>
+            <a href="http://tetr.io">Tetris</a>
+        </nav>
+    </footer>
+    <script src='/static/toggleMenu.js'>
+    </script>
+    <script src='/static/searchbar.js'>
+    </script>
+    <script src='/static/display-products.js'>
+    </script>
+    
+</body>
+</html>
