@@ -69,3 +69,16 @@ def get_product(key, value):
 
     return jsonify({"type": "one product",
                     "data": [dict(product) for product in rows]})
+
+def get_cart_products():
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM products"
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    return jsonify(
+        {"type": "cart", "data": [dict(product) for product in rows]}
+    )

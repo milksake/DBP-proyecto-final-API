@@ -34,6 +34,14 @@ def get_product(num):
     return p
 
 
+# Work in progress
+@app.route('/cart')
+def get_cart_products():
+    with app.app_context():
+        p = API.get_cart_products()
+    return p
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)
     with app.app_context():

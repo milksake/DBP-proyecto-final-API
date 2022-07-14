@@ -98,6 +98,20 @@ function createFormRegister() {
     container.appendChild(p);
 }
 
+function createCart(products) {
+    css.href = "/static/cart.css"
+    for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+        //TO DO
+        //Karol guiate del antiguo cart
+        
+    }
+    //Borrar lo sgte
+    let p = document.createElement('p');
+    p.textContent = "aqui va el carrito";
+    container.appendChild(p);
+}
+
 function displayJSON(json) {
     let displayData = JSON.parse(json);
     while (container.childElementCount > 0)
@@ -109,8 +123,10 @@ function displayJSON(json) {
     else if (displayData['type'] == 'one user')
         createOneUser(displayData['data']);
     else if (displayData['type'] == 'login')
-        createFormLogin(displayData['data']);
+        createFormLogin();
     else if (displayData['type'] == 'register')
-        createFormRegister(displayData['data']);
+        createFormRegister();
+    else if (displayData['type'] == 'cart')
+        createCart(displayData['data']);
     load_links();
 }
