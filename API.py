@@ -1,3 +1,4 @@
+from re import X
 import sqlite3
 from flask import g, current_app, jsonify
 
@@ -23,11 +24,22 @@ def get_users():
     cursor = db.cursor()
 
     statement = "SELECT * FROM users"
-    rows = cursor.execute(statement,).fetchall()
+    rows = cursor.execute(statement).fetchall()
 
     db.commit()
 
-    return jsonify( [dict(user) for user in rows] )
+    return jsonify( {'type': 'all users', 'data': [dict(user) for user in rows]} )
+
+def get_user(key, value):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM products WHERE " + key + "=" + value
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    return jsonify( {'type': 'one user', 'data': [dict(user) for user in rows]} )
 
 
 def get_products():
@@ -35,8 +47,19 @@ def get_products():
     cursor = db.cursor()
 
     statement = "SELECT * FROM products"
-    rows = cursor.execute(statement,).fetchall()
+    rows = cursor.execute(statement).fetchall()
 
     db.commit()
 
-    return jsonify( [dict(product) for product in rows] )
+    return jsonify( {'type': 'all products', 'data': [dict(product) for product in rows]} )
+
+def get_product(key, value):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT a.*, b.username FROM products AS a LEFT JOIN users as b ON a.user = b.user_id WHERE " + key + "=" + str(value)
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    return jsonify( {'type': 'one product', 'data': [dict(product) for product in rows]} )
