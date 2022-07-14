@@ -1,5 +1,31 @@
 const container = document.getElementById("product-container");
 const css = document.getElementById('css-link');
+const a_logout = document.getElementById("a-logout");
+const a_register = document.getElementById("a-register");
+const a_login = document.getElementById("a-login");
+const a_user = document.getElementById("a-user");
+const a_add_product = document.getElementById("a-add-product");
+
+function createLoginChanges(user) {
+    if (user['username'] == "None")
+    {
+        a_logout.style.display = "none";
+        a_register.style.display = "block";
+        a_login.style.display = "block";
+        a_user.style.display = "none";
+        a_add_product.style.display = "none";
+    }
+    else
+    {
+        a_logout.style.display = "block";
+        a_register.style.display = "none";
+        a_login.style.display = "none";
+        a_user.textContent = user['username'];
+        a_user.dataset.page = "user/".concat(user['user_id']);
+        a_user.style.display = "block";
+        a_add_product.style.display = "block";
+    }
+}
 
 function createProducts(products) {
     css.href = "/static/style.css"
@@ -133,7 +159,7 @@ function createFormLogin() {
 
     let form_2 = document.createElement('form');
     form_2.action="";
-    form_2.method="post";
+    form_2.method="POST";
 
     let div_1 = document.createElement('div');
     div_1.className = "input-box";
@@ -186,10 +212,11 @@ function createFormLogin() {
     button_1.textContent = "Login";
 
     form_1.appendChild(h1_1);
-    form_1.appendChild(div_1);
-    form_1.appendChild(div_2);
-    form_1.appendChild(p_1);
-    form_1.appendChild(button_1);
+    form_2.appendChild(div_1);
+    form_2.appendChild(div_2);
+    form_2.appendChild(p_1);
+    form_2.appendChild(button_1);
+    form_1.appendChild(form_2);
 
     page_1.appendChild(form_1);
 
@@ -552,6 +579,7 @@ function createCart(products) {
 
 function displayJSON(json) {
     let displayData = JSON.parse(json);
+    createLoginChanges(displayData['user']);
     while (container.childElementCount > 0)
         container.removeChild(container.lastChild);
     if (displayData['type'] == 'all products')

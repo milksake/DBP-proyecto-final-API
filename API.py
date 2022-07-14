@@ -1,5 +1,6 @@
 import sqlite3
-from flask import g, current_app, jsonify
+from flask import g, current_app, jsonify, session
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 def get_db():
@@ -19,6 +20,14 @@ def close_db():
         db.close()
 
 
+def getLoggedUser():
+    if 'username' in session:
+        return {'username': session['username'], 'user_id': session['user_id']}
+    else:
+        return {'username': "None"}
+
+
+
 def get_users():
     db = get_db()
     cursor = db.cursor()
@@ -29,7 +38,7 @@ def get_users():
     db.commit()
 
     return jsonify({"type": "all users",
-                    "data": [dict(user) for user in rows]})
+                    "data": [dict(user) for user in rows], "user": getLoggedUser()})
 
 
 def get_user(key, value):
@@ -52,7 +61,24 @@ def get_user(key, value):
 
     db.commit()
 
-    return jsonify({"type": "one user", "data": listUser})
+    return jsonify({"type": "one user", "data": listUser, "user": getLoggedUser()})
+
+
+def checkIfUserExists(username, password):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM users WHERE username='" + username + "'"
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    user_list = [dict(product) for product in rows]
+
+    if len(user_list):
+        if (check_password_hash(user_list[0]['password'], password)):
+            return user_list[0]['user_id']
+    return 0
 
 
 def get_products():
@@ -65,7 +91,7 @@ def get_products():
     db.commit()
 
     return jsonify(
-        {"type": "all products", "data": [dict(product) for product in rows]}
+        {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
 
 
@@ -79,7 +105,7 @@ def get_product(key, value):
     db.commit()
 
     return jsonify({"type": "one product",
-                    "data": [dict(product) for product in rows]})
+                    "data": [dict(product) for product in rows], "user": getLoggedUser()})
 
 def get_cart_products():
     db = get_db()
@@ -91,7 +117,7 @@ def get_cart_products():
     db.commit()
 
     return jsonify(
-        {"type": "cart", "data": [dict(product) for product in rows]}
+        {"type": "cart", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
 
 def get_products_by_tag(tag):
@@ -104,5 +130,5 @@ def get_products_by_tag(tag):
     db.commit()
 
     return jsonify(
-        {"type": "all products", "data": [dict(product) for product in rows]}
+        {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )

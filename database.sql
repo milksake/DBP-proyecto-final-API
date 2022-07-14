@@ -22,7 +22,7 @@ user INTEGER
 
 INSERT INTO users (username, email, password, cart_id)
 VALUES
-("admin", "example@mail.com", "grupo8plataformas", 1);
+("admin", "example@mail.com", "pbkdf2:sha256:260000$YttdLqNomnoIvoqf$87a43d1e91b2c5dcf59ec00c13c11e78d93d8e90838d7ef9c310e643b2657a84", 1);
 
 INSERT INTO products (name, stars, price, img, description, tags, user)
 VALUES

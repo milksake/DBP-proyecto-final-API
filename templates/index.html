@@ -19,9 +19,9 @@ Menu
         </nav>
         <nav>
             <a href="" class="nav-link" data-page="products">Menu</a>
-            
-                <a class="nav-link" data-page="register" href="">Register</a>
-                <a class="nav-link" data-page="login" href="">Login</a>
+            <a id="a-logout" class="nav-link" data-page="logout" href="">Logout</a>
+            <a id="a-register" class="nav-link" data-page="register" href="">Register</a>
+            <a id="a-login" class="nav-link" data-page="login" href="">Login</a>
                         
             <div class="searchbar">
                 <input type="text" id="busqueda" name="busqueda">
@@ -29,6 +29,7 @@ Menu
                 <button type="submit" onclick="search('/search/')">Search</button>
             </div>
             <a class="nav-link" data-page="cart" class="btn-header" href="">&#x1f6d2;</a>
+            <a id="a-user" class="nav-link" href=""></a>
             
         </nav>
     </header>
@@ -55,7 +56,7 @@ Menu
             <img class="btn-heades" src="../static/imagenes/4.jpeg" width="140px" height="40px" alt="MDN">
         </div>
         <nav>
-            <a class="nav-link" data-page="add-product" href="">Add product</a>
+            <a id="a-add-product" class="nav-link" data-page="add-product" href="">Add product</a>
             <a href="http://tetr.io">Tetris</a>
         </nav>
     </footer>
