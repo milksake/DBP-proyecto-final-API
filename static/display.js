@@ -5,8 +5,7 @@ function createProducts(products) {
     css.href = "/static/style.css"
     for (let i = 0; i < products.length; i++) {
         const product = products[i];
-        //<a href="{{ url_for('display_product', id=product.id) }}">{{product.name}}</a></h2>
-                
+   
         //inner
         let img = document.createElement('img');
         img.src = "/static/".concat(product['img']);
@@ -32,17 +31,7 @@ function createProducts(products) {
 function createOneProduct(products) {
     css.href = "/static/product.css"
     const product = products[0];
-    /*
-    <div class ="container1">
-        <h1>{{product.name}}</h1>
-        <img style="border: 3px solid; color: rgb(38, 11, 3);" img src="{{url_for('static', filename=product.image)}}" alt="" width="600" height="600" />
-        <h2>S/.{{product.price}}</h2>
-        <h3>Stars: {{product.stars}}  &#11088 </h3>
-        <h3>Submitted by: {{product.user.username}}</h3>
-        <p>{{product.description}}</p>
-        <button><a href="{{url_for('add_to_cart', id=product.id)}}">Add to cart &#128722; </a></button> 
-    </div>
-    */
+    
     //inner
     let h1 = document.createElement('h1');
     h1.textContent = product['name'];
@@ -55,13 +44,21 @@ function createOneProduct(products) {
     let h2 = document.createElement('h2');
     h2.textContent = "S/.".concat(product['price']);
     let h3_1 = document.createElement('h3');
-    h3_1.textContent = product['stars'].toString().concat(" &#11088");
+    h3_1.textContent = product['stars'].toString().concat(" ", "&#11088");
+    let a = document.createElement('a');
+    a.dataset.page = "user/".concat(product['user']);
+    a.textContent = product['username'];
+    a.className = "nav-link style-a";
     let h3_2 = document.createElement('h3');
-    h3_2.textContent = "Submitted by: " + product['username'];
+    h3_2.textContent = "Submitted by: ";
+    h3_2.appendChild(a);
     let p = document.createElement('p');
     p.textContent = product['description'];
     let button = document.createElement('button');
-    button.innerHTML = "ADD TO CART &#128722"
+    button.innerHTML = "ADD TO CART &#128722";
+    button.onclick = () => {
+        add_to_cart(product['product_id']);
+    };
     //div
     let container1 = document.createElement('div');
     container1.className = "container1";
@@ -78,7 +75,43 @@ function createOneProduct(products) {
 function createOneUser(users) {
     css.href = "/static/user.css"
     const user = users[0];
-    //TO DO
+
+    let h1 = document.createElement('h1');
+    h1.textContent = "Datos Personales";
+    let p_1 = document.createElement('p');
+    p_1.textContent = "User: ".concat(user['username']);
+    let p_2 = document.createElement('p');
+    p_2.textContent = "Email: ".concat(user['email']);
+    let h2 = document.createElement('h2');
+    h2.textContent = "Products added by ".concat(user['username']);
+
+    container.appendChild(h1);
+    container.appendChild(p_1);
+    container.appendChild(p_2);
+    container.appendChild(h2);
+
+    for (let i = 0; i < user['products'].length; i++) {
+        const product = user['products'][i];
+        let div_img = document.createElement('img');
+        div_img.style.border = "10px solid";
+        div_img.style.color = "rgba(38, 11, 3, 0.641";
+        div_img.src = "/static/".concat(product['img']);
+        div_img.height = 400;
+        div_img.width = 400;
+        let div_a = document.createElement('a');
+        div_a.dataset.page = "product/".concat(product['product_id']);
+        div_a.textContent = product['name'];
+        let div_h2 = document.createElement('h2');
+        div_h2.appendChild(div_a);
+        let div_h3 = document.createElement('h3');
+        div_h3.textContent = "S/.".concat(product['price']);
+        let div = document.createElement('div');
+        div.className = "container1";
+        div.appendChild(div_img);
+        div.appendChild(div_h2);
+        div.appendChild(div_h3);
+        container.appendChild(div);
+    }
     
 }
 

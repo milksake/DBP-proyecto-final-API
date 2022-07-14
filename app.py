@@ -20,6 +20,13 @@ def get_all_users():
     return u
 
 
+@app.route('/user/<int:id>')
+def get_users(id):
+    with app.app_context():
+        u = API.get_user('user_id', id)
+    return u
+
+
 @app.route('/products')
 def get_all_products():
     with app.app_context():
@@ -40,6 +47,11 @@ def get_cart_products():
     with app.app_context():
         p = API.get_cart_products()
     return p
+
+
+@app.route('/add-product-to-cart/<int:id>', methods=['POST'])
+def add_product_to_cart(id):
+    return "True"
 
 
 if __name__ == "__main__":

@@ -36,12 +36,23 @@ def get_user(key, value):
     db = get_db()
     cursor = db.cursor()
 
-    statement = "SELECT * FROM products WHERE " + key + "=" + value
+    statement = "SELECT * FROM users WHERE " + key + "=" + str(value)
     rows = cursor.execute(statement).fetchall()
+
+    listUser = [dict(user) for user in rows]
+
+    userID = listUser[0]['user_id'];
+
+    statement2 = "SELECT * FROM products WHERE user=" + str(userID)
+    rows2 = cursor.execute(statement2).fetchall()
+
+    listProducts = [dict(product) for product in rows2]
+
+    listUser[0]['products'] = listProducts
 
     db.commit()
 
-    return jsonify({"type": "one user", "data": [dict(user) for user in rows]})
+    return jsonify({"type": "one user", "data": listUser})
 
 
 def get_products():

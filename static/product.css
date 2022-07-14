@@ -48,3 +48,13 @@ section div.container {
     margin: 10px 0px;
     max-width: fit-content;
 }
+
+a.style-a {
+    color: var(--color2);
+    text-decoration: underline;
+}
+
+a.style-a:hover {
+    color: white;
+    cursor: pointer;
+}
