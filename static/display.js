@@ -320,11 +320,150 @@ function createFormRegister() {
 
 function createFormAddProduct() {
     css.href = "/static/login.css"
-    //BORRAR
-    let p = document.createElement('p');
-    p.textContent = "aqui va add product form";
-    container.appendChild(p);
-    //TODO
+
+    let div = document.createElement('div');
+    div.class = "page";
+    
+    let div_1 = document.createElement('div');
+    div_1.className = "form";
+
+    let h1_1 = document.createElement('h1');
+    h1_1.textContent = "Formulario de nuevo producto";
+    
+    let form_1 = document.createElement('form');
+    form_1.action = "";
+    form_1.method = "post";
+    form_1.enctype = "multipart/form-data";
+
+    let div_2 = document.createElement('div');
+    div_2.className = "input-box";
+
+    let label_1 = document.createElement('label');
+    label_1.textContent = "Nombre del producto";
+
+    let input_1 = document.createElement('input');
+    input_1.type = "text";
+    input_1.name = "product_name";
+    input_1.autocomplete = "off";
+
+    let mybr_1 = document.createElement('br');
+
+    div_2.appendChild(label_1);
+    div_2.appendChild(mybr_1);
+    div_2.appendChild(input_1);
+
+    div_1.appendChild(div_2);
+
+    let div_3 = document.createElement('div');
+    div_3.className = "input-box";
+    
+    let label_2 = document.createElement('label');
+    label_2.textContent = "Precio";
+    
+    let input_2 = document.createElement('input');
+    input_2.type = "Number";
+    input_2.name = "price";
+    input_2.autocomplete = "off";
+
+    let mybr_2 = document.createElement('br');
+
+    div_3.appendChild(label_2);
+    div_3.appendChild(mybr_2);
+    div_3.appendChild(input_2);
+
+    div_1.appendChild(div_3);
+    
+    let div_4 = document.createElement('div');
+    div_4.className = "input-box";
+
+    let label_3 = document.createElement('label');
+    label_3.textContent = "Descripción del producto";
+    
+    let input_3 = document.createElement('input');
+    input_3.type = "text";
+    input_3.name = "description";
+    input_3.autocomplete = "off";
+    
+    let mybr_3 = document.createElement('br');
+    div_4.appendChild(label_3);
+    div_4.appendChild(mybr_3);
+    div_4.appendChild(input_3);
+
+    div_1.appendChild(div_4);
+
+    let div_5 = document.createElement('div');
+    div_5.className = "input-box";
+
+    let label_4 = document.createElement('label');
+    label_4.textContent = "Imagen del producto";
+
+    let input_4 = document.createElement('input');
+    input_4.type = "file";
+    input_4.name = "file";
+    input_4.autocomplete = "off";
+    let mybr_4 = document.createElement('br');
+
+    div_5.appendChild(label_4);
+    div_5.appendChild(mybr_4);
+    div_5.appendChild(input_4);
+
+    div_1.appendChild(div_5);
+
+    let div_6 = document.createElement('div');
+    div_6.className = "input-box";
+
+    let label_5 = document.createElement('label');
+    label_5.textContent = "Categoria del cubo";
+
+    let select_1 = document.createElement('select');
+    select_1.id = "category";
+    select_1.name = "category";
+    select_1.size = "1";
+    
+    let option_1 = document.createElement('option');
+    option_1.value = "2x2";
+    option_1.textContent = "2x2";
+    let option_2 = document.createElement('option');
+    option_2.value = "3x3";
+    option_2.textContent = "3x3";
+    let option_3 = document.createElement('option');
+    option_3.value = "4x4";
+    option_3.textContent = "4x4";
+    let option_4 = document.createElement('option');
+    option_4.value = "5x5 +";
+    option_4.textContent = "5x5 +";
+    let option_5 = document.createElement('option');
+    option_5.value = "Pyramix";
+    option_5.textContent = "Pyramix";
+    let option_6 = document.createElement('option');
+    option_6.value = "Gear Cubes";
+    option_6.textContent = "Gear Cubes";
+    let option_7 = document.createElement('option');
+    option_7.value = "Mirror Cubes";
+    option_7.textContent = "Mirror Cubes";
+
+    select_1.appendChild(option_1);
+    select_1.appendChild(option_2);
+    select_1.appendChild(option_3);
+    select_1.appendChild(option_4);
+    select_1.appendChild(option_5);
+    select_1.appendChild(option_6);
+    select_1.appendChild(option_7);
+
+    div_6.appendChild(select_1);
+
+    div_1.appendChild(div_6);
+
+    let button_1 = document.createElement('button');
+    button_1.className = "btn";
+    button_1.type = "submit";
+    button_1.style = "margin-bottom: 0;"
+    button_1.textContent = "Register";
+
+    div_1.appendChild(button_1);
+
+    div.appendChild(div_1);
+    container.appendChild(div);
 }
 
 function createCart(products) {
