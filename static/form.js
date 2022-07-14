@@ -10,6 +10,7 @@ const expresiones = {
 const validarFormulario = (e) => {
 	switch (e.target.name) {
 		case "username":
+      console.log(e.target.value);
       if (expresiones.username.test(e.target.value)) {
           document.querySelector('#username-input .form__input-error').classList.remove('form__input-error-activo');
           campos[username] = true;

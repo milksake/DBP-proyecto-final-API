@@ -198,7 +198,7 @@ function createFormLogin() {
 
 function createFormRegister() {
     css.href = "/static/login.css"
-    
+
     const br = document.createElement('br');
 
     let div_1 = document.createElement('div');
@@ -206,10 +206,16 @@ function createFormRegister() {
     let h1_1 = document.createElement('h1');
     h1_1.textContent = "Register Form";
 
+    // form
+    let form_1 = document.createElement('form');
+    form_1.id = "form";
+    form_1.method = "post";
+    form_1.action = "";
+
     //div2
     let div_2 = document.createElement('div');
     div_2.className = "input-box";
-    div_2.id = "username-input"
+    div_2.id = "username-input";
     let label_1 = document.createElement('label');
     label_1.textContent = "Username";
     let input_1 = document.createElement('input');
@@ -219,13 +225,14 @@ function createFormRegister() {
     input_1.setAttribute = ('required', '');
     let p_1 = document.createElement('p');
     p_1.className = "form__input-error";
-    p_1.textContent = "4 to 16 digits, numbers, letters and underscore."
+    p_1.textContent = "4 to 16 digits, numbers, letters and underscore.";
     let mybr_1 = document.createElement('br');
     
     //armar div2
     div_2.appendChild(label_1);
     div_2.appendChild(mybr_1)
     div_2.appendChild(input_1);
+    div_2.appendChild(p_1);
 
     //div3
     let div_3 = document.createElement('div');
@@ -305,17 +312,25 @@ function createFormRegister() {
     button_1.style = "margin-bottom: 0";
     button_1.textContent = "Register";
 
+    // armar form
+    form_1.appendChild(div_2);
+    form_1.appendChild(div_3);
+    form_1.appendChild(div_4);
+    form_1.appendChild(div_5);
+    form_1.appendChild(button_1);
+
     div_1.appendChild(h1_1);
-    div_1.appendChild(div_2);
-    div_1.appendChild(div_3);
-    div_1.appendChild(div_4);
-    div_1.appendChild(div_5);
-    div_1.appendChild(button_1);
+    div_1.appendChild(form_1);
 
     let page_1 = document.createElement('page');
     page_1.appendChild(div_1);
     
     container.appendChild(page_1);
+
+    let scriptEle = document.createElement("script");
+    scriptEle.setAttribute("src", "/static/form.js");
+    document.body.appendChild(scriptEle);
+
 }
 
 function createFormAddProduct() {
@@ -458,7 +473,7 @@ function createFormAddProduct() {
     button_1.className = "btn";
     button_1.type = "submit";
     button_1.style = "margin-bottom: 0;"
-    button_1.textContent = "Register";
+    button_1.textContent = "Add Product";
 
     div_1.appendChild(button_1);
 
