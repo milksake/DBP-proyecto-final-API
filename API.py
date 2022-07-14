@@ -1,11 +1,11 @@
-from re import X
 import sqlite3
 from flask import g, current_app, jsonify
 
+
 def get_db():
-    if 'db' not in g:
+    if "db" not in g:
         g.db = sqlite3.connect(
-            current_app.config['DATABASE'],
+            current_app.config["DATABASE"],
             detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
@@ -13,7 +13,7 @@ def get_db():
 
 
 def close_db():
-    db = g.pop('db', None)
+    db = g.pop("db", None)
 
     if db is not None:
         db.close()
@@ -28,7 +28,9 @@ def get_users():
 
     db.commit()
 
-    return jsonify( {'type': 'all users', 'data': [dict(user) for user in rows]} )
+    return jsonify({"type": "all users",
+                    "data": [dict(user) for user in rows]})
+
 
 def get_user(key, value):
     db = get_db()
@@ -39,7 +41,7 @@ def get_user(key, value):
 
     db.commit()
 
-    return jsonify( {'type': 'one user', 'data': [dict(user) for user in rows]} )
+    return jsonify({"type": "one user", "data": [dict(user) for user in rows]})
 
 
 def get_products():
@@ -51,15 +53,21 @@ def get_products():
 
     db.commit()
 
-    return jsonify( {'type': 'all products', 'data': [dict(product) for product in rows]} )
+    return jsonify(
+        {"type": "all products", "data": [dict(product) for product in rows]}
+    )
+
 
 def get_product(key, value):
     db = get_db()
     cursor = db.cursor()
 
-    statement = "SELECT a.*, b.username FROM products AS a LEFT JOIN users as b ON a.user = b.user_id WHERE " + key + "=" + str(value)
+    statement = """SELECT a.*, b.username FROM products AS a
+     LEFT JOIN users as b ON a.user = b.user_id WHERE """
+    +key + "=" + str(value)
     rows = cursor.execute(statement).fetchall()
 
     db.commit()
 
-    return jsonify( {'type': 'one product', 'data': [dict(product) for product in rows]} )
+    return jsonify({"type": "one product",
+                    "data": [dict(product) for product in rows]})
