@@ -319,17 +319,72 @@ function createFormRegister() {
 }
 
 function createCart(products) {
-    css.href = "/static/cart.css"
+    css.href = "/static/cart.css";
+    let price_t = 0;
+    
     for (let i = 0; i < products.length; i++) {
         const product = products[i];
-        //TO DO
-        //Karol guiate del antiguo cart
+        price_t += product['price'];
+
+        // div right-text
+        let right_text = document.createElement('div');
+        right_text.className = "right_text";
+
+        let a = document.createElement('a');
+        a.dataset.page = "product/".concat(product['product_id']);
+        a.textContent = product['name'];
+        a.className = 'nav-link';
         
+        let h2 = document.createElement('h2');
+        h2.appendChild(a);
+        
+        let p = document.createElement('p');
+        p.textContent = product['description'];
+
+        right_text.appendChild(h2);
+        right_text.appendChild(p);
+        
+        // div right
+        let right = document.createElement('div');
+        right.className = "right";
+
+        let img = document.createElement('img');
+        img.src = "/static/".concat(product['img']);
+        img.height = 230;
+        img.width = 230;
+        
+        right.appendChild(img);
+        right.appendChild(right_text);
+        
+        let button = document.createElement('button');
+        button.innerHTML = "REMOVE FROM CART";
+        
+        // div left
+        let h3 =  document.createElement('h3');
+        h3.textContent = "S/.".concat(product['price']);
+        h3.appendChild(button);
+        
+        let left = document.createElement('div');
+        left.className = "left";
+        left.appendChild(h3);
+        
+        // div container1
+        let container1 = document.createElement('div');
+        container1.className = "container1";
+        container1.appendChild(right);
+        container1.appendChild(left);
+        
+        container.appendChild(container1);
+     
     }
-    //Borrar lo sgte
-    let p = document.createElement('p');
-    p.textContent = "aqui va el carrito";
-    container.appendChild(p);
+
+    let h1_1 = document.createElement('h1');
+
+    let p_1 = document.createElement('p_1');
+    p_1.textContent = "TOTAL:  S/.".concat(price_t);
+    p_1.appendChild(h1_1);
+        
+    container.appendChild(p_1);
 }
 
 function displayJSON(json) {
