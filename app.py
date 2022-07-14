@@ -54,6 +54,13 @@ def add_product_to_cart(id):
     return "True"
 
 
+@app.route('/tag/<tag>')
+def get_product_tag(tag):
+    with app.app_context():
+        p = API.get_products_by_tag(tag);
+    return p
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)
     with app.app_context():

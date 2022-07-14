@@ -93,3 +93,16 @@ def get_cart_products():
     return jsonify(
         {"type": "cart", "data": [dict(product) for product in rows]}
     )
+
+def get_products_by_tag(tag):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM products WHERE tags like '%" + tag + "%'"
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    return jsonify(
+        {"type": "all products", "data": [dict(product) for product in rows]}
+    )
