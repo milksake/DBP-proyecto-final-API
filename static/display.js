@@ -318,6 +318,15 @@ function createFormRegister() {
     container.appendChild(page_1);
 }
 
+function createFormAddProduct() {
+    css.href = "/static/login.css"
+    //BORRAR
+    let p = document.createElement('p');
+    p.textContent = "aqui va add product form";
+    container.appendChild(p);
+    //TODO
+}
+
 function createCart(products) {
     css.href = "/static/cart.css";
     let price_t = 0;
@@ -403,5 +412,7 @@ function displayJSON(json) {
         createFormRegister();
     else if (displayData['type'] == 'cart')
         createCart(displayData['data']);
+    else if (displayData['type'] == "add-product")
+        createFormAddProduct();
     load_links();
 }
