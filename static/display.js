@@ -1,17 +1,6 @@
 const container = document.getElementById("product-container");
 const css = document.getElementById('css-link');
 
-function getProducts()
-{
-    let url = location.origin.concat("/get-all-products");
-    console.log(url)
-
-    xmlHttp = new XMLHttpRequest(); 
-    xmlHttp.open( "GET", url, false);
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-
 function createProducts(products) {
     css.href = "/static/style.css"
     for (let i = 0; i < products.length; i++) {
@@ -86,11 +75,27 @@ function createOneProduct(products) {
     container.appendChild(container1);
 }
 
-function displayProducts(json) {
-    let products = JSON.parse(json);
-    while (container.childElementCount > 0)
-        container.removeChild(container.lastChild);
-    createProducts(products['data']);
+function createOneUser(users) {
+    css.href = "/static/user.css"
+    const user = users[0];
+    //TO DO
+    
+}
+
+function createFormLogin() {
+    css.href = "/static/login.css"
+    //TO DO
+    let p = document.createElement('p');
+    p.textContent = "aqui va el login";
+    container.appendChild(p);
+}
+
+function createFormRegister() {
+    css.href = "/static/login.css"
+    //TO DO
+    let p = document.createElement('p');
+    p.textContent = "aqui va el register";
+    container.appendChild(p);
 }
 
 function displayJSON(json) {
@@ -101,5 +106,11 @@ function displayJSON(json) {
         createProducts(displayData['data']);
     else if (displayData['type'] == 'one product')
         createOneProduct(displayData['data']);
+    else if (displayData['type'] == 'one user')
+        createOneUser(displayData['data']);
+    else if (displayData['type'] == 'login')
+        createFormLogin(displayData['data']);
+    else if (displayData['type'] == 'register')
+        createFormRegister(displayData['data']);
     load_links();
 }

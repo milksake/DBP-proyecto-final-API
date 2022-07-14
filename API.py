@@ -62,9 +62,7 @@ def get_product(key, value):
     db = get_db()
     cursor = db.cursor()
 
-    statement = """SELECT a.*, b.username FROM products AS a
-     LEFT JOIN users as b ON a.user = b.user_id WHERE """
-    +key + "=" + str(value)
+    statement = "SELECT a.*, b.username FROM products AS a LEFT JOIN users as b ON a.user = b.user_id WHERE " + key + "=" + str(value)
     rows = cursor.execute(statement).fetchall()
 
     db.commit()
