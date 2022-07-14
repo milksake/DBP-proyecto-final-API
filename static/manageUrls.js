@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.onpopstate = e => {
     const data = e.state;
     document.title = data.title;
-    toDivide = JSON.parse(JSON.stringify(data))
+    let toDivide = JSON.parse(JSON.stringify(data));
     displayJSON(toDivide['response']);
 };
 

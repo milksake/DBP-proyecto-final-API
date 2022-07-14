@@ -76,13 +76,14 @@ function createOneProduct(products) {
     //div
     let container1 = document.createElement('div');
     container1.className = "container1";
-    container.appendChild(h1);
-    container.appendChild(img);
-    container.appendChild(h2);
-    container.appendChild(h3_1);
-    container.appendChild(h3_2);
-    container.appendChild(p);
-    container.appendChild(button);
+    container1.appendChild(h1);
+    container1.appendChild(img);
+    container1.appendChild(h2);
+    container1.appendChild(h3_1);
+    container1.appendChild(h3_2);
+    container1.appendChild(p);
+    container1.appendChild(button);
+    container.appendChild(container1);
 }
 
 function displayProducts(json) {
