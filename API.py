@@ -125,6 +125,9 @@ def get_products():
         {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
 
+def get_form():
+    return jsonify({'type': 'add-product', 'user': {'username': session['username'], 'user_id': session['user_id']}})
+
 def new_product(name, stars, price, img, description, tags, user):
     db = get_db()
     cursor = db.cursor()

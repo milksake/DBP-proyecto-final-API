@@ -380,10 +380,6 @@ function createFormRegister() {
 function createFormAddProduct() {
     css.href = "/static/login.css"
 
-    document.getElementById("a-logout").style.display = "none";
-    document.getElementById("a-register").style.display = "none";
-    document.getElementById("a-login").style.display = "none";
-
     let div = document.createElement('div');
     div.class = "page";
     

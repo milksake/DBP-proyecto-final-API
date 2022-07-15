@@ -65,19 +65,22 @@ def remove_product_from_cart(id):
         API.remove_cart_product(session['user_id'], id)
     return "True"
 
-@app.route('/add-product', methods=['POST'])
+@app.route('/add-product', methods=['GET', 'POST'])
 def add_product():
-    product_name = request.form['product_name']
-    price = request.form['price']
-    description = request.form['description']
-    file = request.files['file']
-    category = request.form['category']
-    texto = file.filename
-    file.save(os.path.join(app.config["UPLOAD_FOLDER"], texto))
-    img_dir = "/imagenes/" + file.filename
+    if request.method == 'POST':
+        product_name = request.form['product_name']
+        price = request.form['price']
+        description = request.form['description']
+        file = request.files['file']
+        category = request.form['category']
+        texto = file.filename
+        file.save(os.path.join(app.config["UPLOAD_FOLDER"], texto))
+        img_dir = "/imagenes/" + file.filename
 
-    API.new_product(product_name, 0, price, img_dir, description, category, 1)
-    return redirect(url_for('index'))
+        API.new_product(product_name, 0, price, img_dir, description, category, 1)
+        return redirect(url_for('index'))
+    else:
+        return API.get_form()
 
 @app.route('/tag/<tag>')
 def get_product_tag(tag):
