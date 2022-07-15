@@ -14,4 +14,8 @@ Abre una terminal corre a la carpeta del proyecto y ejecuta:
 ```
 poetry install
 ```
-Ejecutar `app.py` en el entorno virtual creado
+Ejecutar:
+```
+python3 app.py
+```
+en el entorno virtual creado
