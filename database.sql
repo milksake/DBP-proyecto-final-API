@@ -20,6 +20,14 @@ tags TEXT,
 user INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS titi(
+titi_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+user_id INTEGER NOT NULL,
+product_id INTEGER NOT NULL
+);
+
+INSERT INTO titi (user_id, product_id) VALUES (1, 1), (1, 5), (1,8);
+
 INSERT INTO users (username, email, password, cart_id)
 VALUES
 ("admin", "example@mail.com", "pbkdf2:sha256:260000$YttdLqNomnoIvoqf$87a43d1e91b2c5dcf59ec00c13c11e78d93d8e90838d7ef9c310e643b2657a84", 1);
