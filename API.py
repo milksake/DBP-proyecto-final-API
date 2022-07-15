@@ -163,7 +163,7 @@ def get_cart_products(user_id):
         product_list.extend([dict(product) for product in rows2])
 
     db.commit()
-    print(product_list)
+
     return jsonify(
         {"type": "cart", "data": product_list, "user": getLoggedUser()}
     )
@@ -193,3 +193,12 @@ def get_products_by_search(search):
     return jsonify(
         {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
+
+def add_car_product(user_id, product_id):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "INSERT INTO titi(user_id, product_id) VALUES ( ?, ?)"
+    cursor.execute(statement, [user_id, product_id])
+    
+    db.commit()

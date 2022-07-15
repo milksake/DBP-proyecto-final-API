@@ -60,7 +60,7 @@ function add_to_cart(product_id) {
     const request = new XMLHttpRequest();
     request.open('POST', location.origin + "/add-product-to-cart" + `/${product_id}`);
     request.onload = () => {
-        if (request.status = 200)
+        if (request.status = 200 && request.responseText == "True")
             alert("Producto añadido al carrito");
         else
             alert("No se pudo añadir este producto");

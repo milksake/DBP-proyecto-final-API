@@ -55,6 +55,8 @@ def get_cart_products():
 
 @app.route('/add-product-to-cart/<int:id>', methods=['POST'])
 def add_product_to_cart(id):
+    with app.app_context():
+        API.add_car_product(session['user_id'], id)
     return "True"
 
 @app.route('/add-product', methods=['POST'])
