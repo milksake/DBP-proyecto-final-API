@@ -236,7 +236,7 @@ function createFormRegister() {
     // form
     let form_1 = document.createElement('form');
     form_1.id = "form";
-    form_1.method = "post";
+    form_1.method = "POST";
     form_1.action = "";
 
     //div2
@@ -374,7 +374,7 @@ function createFormAddProduct() {
     
     let form_1 = document.createElement('form');
     form_1.action = "";
-    form_1.method = "post";
+    form_1.method = "POST";
     form_1.enctype = "multipart/form-data";
 
     let div_2 = document.createElement('div');
@@ -493,7 +493,7 @@ function createFormAddProduct() {
     select_1.appendChild(option_7);
 
     div_6.appendChild(select_1);
-
+    
     div_1.appendChild(div_6);
 
     let button_1 = document.createElement('button');
@@ -502,9 +502,10 @@ function createFormAddProduct() {
     button_1.style = "margin-bottom: 0;"
     button_1.textContent = "Add Product";
 
-    div_1.appendChild(button_1);
-
-    div.appendChild(div_1);
+    form_1.appendChild(div_1);
+    form_1.appendChild(button_1);
+    
+    div.appendChild(form_1);
     container.appendChild(div);
 }
 

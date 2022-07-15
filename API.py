@@ -125,6 +125,15 @@ def get_products():
         {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
 
+def new_product(name, stars, price, img, description, tags, user):
+    db = get_db()
+    cursor = db.cursor()
+    stars = 0
+    statement = "INSERT INTO products (name, stars, price, img, description, tags, user) VALUES(?,?,?,?,?,?,?)"
+    cursor.execute(statement, [name, stars, price, img, description, tags, 1]) 
+
+    db.commit()
+    return True
 
 def get_product(key, value):
     db = get_db()

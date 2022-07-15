@@ -1,11 +1,14 @@
+from fileinput import filename
 from flask import Flask, redirect, render_template, request, session, url_for
 import API
-
+import os
 app = Flask(__name__)
 
 app.config["DATABASE"] = "data.db"
 app.config["SECRET_KEY"] = "GRUPO8PLATAFORMAS"
 
+UPLOAD_FOLDER = "static/imagenes/"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route('/')
 def index():
@@ -54,6 +57,19 @@ def get_cart_products():
 def add_product_to_cart(id):
     return "True"
 
+@app.route('/add-product', methods=['POST'])
+def add_product():
+    product_name = request.form['product_name']
+    price = request.form['price']
+    description = request.form['description']
+    file = request.files['file']
+    category = request.form['category']
+    texto = file.filename
+    file.save(os.path.join(app.config["UPLOAD_FOLDER"], texto))
+    img_dir = "/imagenes/" + file.filename
+
+    API.new_product(product_name, 0, price, img_dir, description, category, 1)
+    return get_all_products()
 
 @app.route('/tag/<tag>')
 def get_product_tag(tag):
