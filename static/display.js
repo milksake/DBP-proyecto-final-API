@@ -5,6 +5,7 @@ const a_register = document.getElementById("a-register");
 const a_login = document.getElementById("a-login");
 const a_user = document.getElementById("a-user");
 const a_add_product = document.getElementById("a-add-product");
+const a_cart = document.getElementById("a-cart");
 
 function createLoginChanges(user) {
     if (user['username'] == "None")
@@ -14,6 +15,7 @@ function createLoginChanges(user) {
         a_login.style.display = "block";
         a_user.style.display = "none";
         a_add_product.style.display = "none";
+        a_cart.style.display = "none";
     }
     else
     {
@@ -24,6 +26,7 @@ function createLoginChanges(user) {
         a_user.dataset.page = "user/".concat(user['user_id']);
         a_user.style.display = "block";
         a_add_product.style.display = "block";
+        a_cart.style.display = "block";
     }
 }
 
