@@ -39,7 +39,7 @@ function load_page(name) {
                 let r = {'type': name, 'user': {username: "None"}};
                 displayJSON(JSON.stringify(r));
 
-                history.pushState({'title': name, 'response': r}, name, location.origin + `/${name}`);
+                history.pushState({'title': name, 'response': JSON.stringify(r)}, name, location.origin + `/${name}`);
             }
         };
         request.send();
