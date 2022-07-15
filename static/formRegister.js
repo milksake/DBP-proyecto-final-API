@@ -18,7 +18,6 @@ const campos = {
 function enableButton() {
   if (campos.username && campos.email && campos.password && campos.password2){
     btn.disabled = false;
-    console.log("todo bien");
   }
   else{
     btn.disabled = true;
@@ -35,6 +34,7 @@ const validarFormulario = (e) => {
 		break;
 		case "password":
       validarCampo(expresiones.password, e.target, 'password');
+      validarPassword2();
 		break;
     case "password2":
       validarPassword2();

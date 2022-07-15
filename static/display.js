@@ -372,7 +372,7 @@ function createFormRegister() {
     container.appendChild(page_1);
 
     let scriptEle = document.createElement("script");
-    scriptEle.setAttribute("src", "/static/form.js");
+    scriptEle.setAttribute("src", "/static/formRegister.js");
     document.body.appendChild(scriptEle);
 
 }
@@ -391,6 +391,7 @@ function createFormAddProduct() {
     
     let form_1 = document.createElement('form');
     form_1.action = "";
+    form_1.id = "form";
     form_1.method = "POST";
     form_1.enctype = "multipart/form-data";
 
@@ -459,6 +460,7 @@ function createFormAddProduct() {
     let input_4 = document.createElement('input');
     input_4.type = "file";
     input_4.name = "file";
+    input_4.id = "uploadFile";
     input_4.autocomplete = "off";
     let mybr_4 = document.createElement('br');
 
@@ -470,6 +472,7 @@ function createFormAddProduct() {
 
     let div_6 = document.createElement('div');
     div_6.className = "input-box";
+    div_6.id = "select";
 
     let label_5 = document.createElement('label');
     label_5.textContent = "Categoria del cubo";
@@ -509,21 +512,33 @@ function createFormAddProduct() {
     select_1.appendChild(option_6);
     select_1.appendChild(option_7);
 
+    let p_1 = document.createElement('p');
+    p_1.className = "form__input-error";
+    p_1.textContent = "Formulario llenado incorrectamente";
+
     div_6.appendChild(select_1);
-    
+    div_6.appendChild(p_1);
+
     div_1.appendChild(div_6);
 
     let button_1 = document.createElement('button');
     button_1.className = "btn";
+    button_1.id = "btn";
     button_1.type = "submit";
+    button_1.setAttribute = ('disabled', true);
     button_1.style = "margin-bottom: 0;"
     button_1.textContent = "Add Product";
 
+    div_1.appendChild(button_1);
     form_1.appendChild(div_1);
-    form_1.appendChild(button_1);
     
     div.appendChild(form_1);
     container.appendChild(div);
+
+    let scriptEle = document.createElement("script");
+    scriptEle.setAttribute("src", "/static/formNewProduct.js");
+    document.body.appendChild(scriptEle);
+
 }
 
 function createCart(products) {
