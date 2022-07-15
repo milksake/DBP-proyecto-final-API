@@ -147,17 +147,25 @@ def get_product(key, value):
     return jsonify({"type": "one product",
                     "data": [dict(product) for product in rows], "user": getLoggedUser()})
 
-def get_cart_products():
+def get_cart_products(user_id):
     db = get_db()
     cursor = db.cursor()
 
-    statement = "SELECT * FROM products"
+    statement = "SELECT * FROM titi WHERE user_id=" + str(user_id)
     rows = cursor.execute(statement).fetchall()
 
-    db.commit()
+    cart_list = [dict(product) for product in rows]
 
+    product_list = []
+    for cart in cart_list:
+        statement2 = "SELECT * FROM products WHERE product_id=" + str(cart['product_id'])
+        rows2 = cursor.execute(statement2).fetchall()
+        product_list.extend([dict(product) for product in rows2])
+
+    db.commit()
+    print(product_list)
     return jsonify(
-        {"type": "cart", "data": [dict(product) for product in rows], "user": getLoggedUser()}
+        {"type": "cart", "data": product_list, "user": getLoggedUser()}
     )
 
 def get_products_by_tag(tag):

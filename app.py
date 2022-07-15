@@ -49,7 +49,7 @@ def get_product(num):
 @app.route('/cart')
 def get_cart_products():
     with app.app_context():
-        p = API.get_cart_products()
+        p = API.get_cart_products(session['user_id'])
     return p
 
 
