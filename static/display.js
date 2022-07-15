@@ -290,7 +290,7 @@ function createFormRegister() {
     //div4
     let div_4 = document.createElement('div');
     div_4.className = "input-box";
-    div_4.id = "password-input"
+    div_4.id = "password-input";
 
     let label_4 = document.createElement('label');
     label_4.textContent = "Password";
@@ -298,6 +298,7 @@ function createFormRegister() {
     let input_4 = document.createElement('input');
     input_4.type = "password";
     input_4.name = "password";
+    input_4.id = "password";
     input_4.autocomplete = "off";
     input_4.setAttribute = ('required', '');
 
@@ -316,25 +317,36 @@ function createFormRegister() {
     //div5
     let div_5 = document.createElement('div');
     div_5.className = "input-box";
+    div_5.id = "password2-input";
 
     let label_5 = document.createElement('label');
     label_5.textContent = "Confirm password";
 
     let input_5 = document.createElement('input');
     input_5.type = "password";
-    input_5.name = "password-repeat";
+    input_5.name = "password2";
+    input_5.id = "password2";
     input_5.autocomplete = "off";
     input_5.setAttribute = ('required', '');
+    
+    let p_5 = document.createElement('p');
+    p_5.className = "form__input-error";
+    p_5.textContent = "different password";
     let mybr_6 = document.createElement('br');
+    let mybr_7 = document.createElement('br');
 
     //armar div5
     div_5.appendChild(label_5);
     div_5.appendChild(mybr_6);
     div_5.appendChild(input_5);
+    div_5.appendChild(mybr_7);
+    div_5.appendChild(p_5);
 
     //button
     let button_1 = document.createElement('button');
     button_1.className = "btn";
+    button_1.id = "btn";
+    button_1.setAttribute = ('disabled', true);
     button_1.type = "submit"
     button_1.style = "margin-bottom: 0";
     button_1.textContent = "Register";
