@@ -194,11 +194,20 @@ def get_products_by_search(search):
         {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
 
-def add_car_product(user_id, product_id):
+def add_cart_product(user_id, product_id):
     db = get_db()
     cursor = db.cursor()
 
     statement = "INSERT INTO titi(user_id, product_id) VALUES ( ?, ?)"
     cursor.execute(statement, [user_id, product_id])
+    
+    db.commit()
+
+def remove_cart_product(user_id, product_id):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "DELETE FROM titi WHERE user_id=" + str(user_id) + " AND product_id=" + str(product_id)
+    cursor.execute(statement)
     
     db.commit()

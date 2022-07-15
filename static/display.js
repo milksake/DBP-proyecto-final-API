@@ -564,6 +564,9 @@ function createCart(products) {
         
         let button = document.createElement('button');
         button.innerHTML = "REMOVE FROM CART";
+        button.onclick = () => {
+            remove_from_cart(product['product_id'], "cart-product-".concat(i), product['price'])
+        };
         
         // div left
         let h3 =  document.createElement('h3');
@@ -577,6 +580,7 @@ function createCart(products) {
         // div container1
         let container1 = document.createElement('div');
         container1.className = "container1";
+        container1.id = "cart-product-".concat(i)
         container1.appendChild(right);
         container1.appendChild(left);
         
@@ -587,6 +591,7 @@ function createCart(products) {
     let h1_1 = document.createElement('h1');
 
     let p_1 = document.createElement('p_1');
+    p_1.id = "cart-price";
     p_1.textContent = "TOTAL:  S/.".concat(price_t);
     p_1.appendChild(h1_1);
         

@@ -61,9 +61,31 @@ function add_to_cart(product_id) {
     request.open('POST', location.origin + "/add-product-to-cart" + `/${product_id}`);
     request.onload = () => {
         if (request.status = 200 && request.responseText == "True")
-            alert("Producto añadido al carrito");
+            alert("Product added to cart");
         else
-            alert("No se pudo añadir este producto");
+            alert("Error");
+    };
+    request.send();
+}
+
+function remove_from_cart(product_id, div_id, price) {
+    const request = new XMLHttpRequest();
+    request.open('POST', location.origin + "/remove-product-from-cart" + `/${product_id}`);
+    request.onload = () => {
+        if (request.status = 200 && request.responseText == "True")
+        {
+            alert("Product removed from cart");
+            let div = document.getElementById(div_id);
+            div.style.display = "none";
+            let p = document.getElementById('cart-price');
+            let p_string = p.textContent;
+            let p_sliced = p_string.substring(11);
+            let price_t = parseInt(p_sliced);
+            console.log(p_string, p_sliced, price_t, price);
+            p.textContent = "TOTAL:  S/.".concat(price_t - price);
+        }
+        else
+            alert("Error");
     };
     request.send();
 }
