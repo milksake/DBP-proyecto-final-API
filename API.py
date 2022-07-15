@@ -130,7 +130,7 @@ def new_product(name, stars, price, img, description, tags, user):
     cursor = db.cursor()
     stars = 0
     statement = "INSERT INTO products (name, stars, price, img, description, tags, user) VALUES(?,?,?,?,?,?,?)"
-    cursor.execute(statement, [name, stars, price, img, description, tags, 1]) 
+    cursor.execute(statement, [name, stars, price, img, description, tags, session['user_id']]) 
 
     db.commit()
     return True
