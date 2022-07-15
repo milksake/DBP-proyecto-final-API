@@ -132,3 +132,16 @@ def get_products_by_tag(tag):
     return jsonify(
         {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
     )
+
+def get_products_by_search(search):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM products WHERE name like '%" + search + "%'"
+    rows = cursor.execute(statement).fetchall()
+
+    db.commit()
+
+    return jsonify(
+        {"type": "all products", "data": [dict(product) for product in rows], "user": getLoggedUser()}
+    )

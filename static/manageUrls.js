@@ -33,7 +33,7 @@ function load_page(name) {
             else
             {
                 document.title = name;
-                let r = {'type': name, 'user': "None"};
+                let r = {'type': name, 'user': {username: "None"}};
                 displayJSON(JSON.stringify(r));
 
                 history.pushState({'title': name, 'response': r}, name, location.origin + `/${name}`);

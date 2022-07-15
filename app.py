@@ -61,6 +61,12 @@ def get_product_tag(tag):
         p = API.get_products_by_tag(tag);
     return p
 
+@app.route('/search/<search>')
+def get_product_search(search):
+    with app.app_context():
+        p = API.get_products_by_search(search);
+    return p
+
 
 @app.route('/login', methods=['POST'])
 def login():

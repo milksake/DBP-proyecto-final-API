@@ -1,4 +1,12 @@
-function search(url) {
+function search() {
     const searchBarInput = document.querySelector('.searchbar input');
-    window.location.href = url + searchBarInput.value;
+    const request = new XMLHttpRequest();
+    request.open('GET', window.location.origin + "/search/" + searchBarInput.value);
+    request.onload = () => {
+        if (request.status = 200)
+            displayJSON(request.responseText);
+        else
+            alert("Error");
+    };
+    request.send();
 }
