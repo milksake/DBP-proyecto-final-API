@@ -31,7 +31,6 @@ section div.container {
     flex-direction:column ; 
     padding: 4% 0;
     background-color: var(--color4);
-    opacity: 0.9;
 }
 
 .container h2 {

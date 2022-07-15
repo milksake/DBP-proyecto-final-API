@@ -57,7 +57,7 @@ function createProducts(products) {
     }
 }
 
-function createOneProduct(products) {
+function createOneProduct(products, showButton) {
     css.href = "/static/product.css"
     const product = products[0];
     
@@ -85,6 +85,7 @@ function createOneProduct(products) {
     p.textContent = product['description'];
     let button = document.createElement('button');
     button.innerHTML = "ADD TO CART &#128722";
+    button.id = "a-button";
     button.onclick = () => {
         add_to_cart(product['product_id']);
     };
@@ -97,7 +98,8 @@ function createOneProduct(products) {
     container1.appendChild(h3_1);
     container1.appendChild(h3_2);
     container1.appendChild(p);
-    container1.appendChild(button);
+    if (showButton)
+        container1.appendChild(button);
     container.appendChild(container1);
 }
 
@@ -590,7 +592,7 @@ function createCart(products) {
 
     let h1_1 = document.createElement('h1');
 
-    let p_1 = document.createElement('p_1');
+    let p_1 = document.createElement('h1');
     p_1.id = "cart-price";
     p_1.textContent = "TOTAL:  S/.".concat(price_t);
     p_1.appendChild(h1_1);
@@ -606,7 +608,7 @@ function displayJSON(json) {
     if (displayData['type'] == 'all products')
         createProducts(displayData['data']);
     else if (displayData['type'] == 'one product')
-        createOneProduct(displayData['data']);
+        createOneProduct(displayData['data'], displayData['user']['username'] != "None");
     else if (displayData['type'] == 'one user')
         createOneUser(displayData['data']);
     else if (displayData['type'] == 'login')

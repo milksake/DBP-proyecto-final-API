@@ -77,7 +77,7 @@ def add_product():
     img_dir = "/imagenes/" + file.filename
 
     API.new_product(product_name, 0, price, img_dir, description, category, 1)
-    return get_all_products()
+    return redirect(url_for('index'))
 
 @app.route('/tag/<tag>')
 def get_product_tag(tag):
