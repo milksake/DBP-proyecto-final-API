@@ -80,6 +80,37 @@ def checkIfUserExists(username, password):
             return user_list[0]['user_id']
     return 0
 
+def new_user(name, email, password, cart_id = 0):
+    db = get_db()
+    cursor = db.cursor()
+    statement = "INSERT INTO users(username, email, password, cart_id) VALUES ( ?, ?, ?, ?)"
+    cursor.execute(statement, [name, email, generate_password_hash(password), cart_id])
+    db.commit()
+    return True
+
+def checkUsernameExists(username):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM users WHERE username='" + username + "'"
+    cursor.execute(statement)
+    result = cursor.fetchone()
+
+    if not result:
+        return 1
+    return 0
+
+def checkEmailExists(email):
+    db = get_db()
+    cursor = db.cursor()
+
+    statement = "SELECT * FROM users WHERE username='" + email + "'"
+    cursor.execute(statement)
+    result = cursor.fetchone()
+
+    if not result:
+        return 1
+    return 0
 
 def get_products():
     db = get_db()

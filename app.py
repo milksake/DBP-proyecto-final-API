@@ -99,6 +99,21 @@ def destroyLoginSession():
     session.pop('username', None)
     session.pop('id', None)
 
+@app.route('/register', methods=['POST'])
+def register():
+    username = request.form['username']
+    email = request.form['email']
+    password = request.form['password']
+
+    succesful = True
+    if not API.checkUsernameExists(username):
+        succesful = False
+    if not API.checkEmailExists(email):
+        succesful = False
+    if succesful:
+        API.new_user(username, email, password)
+    return index()
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)
     with app.app_context():
