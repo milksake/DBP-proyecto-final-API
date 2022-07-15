@@ -75,9 +75,9 @@ def login():
     id = API.checkIfUserExists(username, password)
     if id:
         setLoginSession(username, id)
-        return username
+        return redirect(url_for('index'))
     else:
-        return "False"
+        return redirect(url_for('index'))
 
 @app.route('/logout')
 def logout():
@@ -112,7 +112,10 @@ def register():
         succesful = False
     if succesful:
         API.new_user(username, email, password)
-    return index()
+        id = API.checkIfUserExists(username, password)
+        if id:
+            setLoginSession(username, id)
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8000, debug=True)

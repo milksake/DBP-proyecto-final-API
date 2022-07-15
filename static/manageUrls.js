@@ -26,9 +26,12 @@ function load_page(name) {
                 const response = request.responseText;
                 document.title = name;
                 displayJSON(response);
-
+                
                 // Push state to URL.
-                history.pushState({'title': name, 'response': response}, name, location.origin + `/${name}`);
+                let URLname = name;
+                if (URLname == 'logout')
+                    URLname = 'products';
+                history.pushState({'title': name, 'response': response}, name, location.origin + `/${URLname}`);
             }
             else
             {
